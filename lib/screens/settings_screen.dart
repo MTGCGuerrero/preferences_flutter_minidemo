@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_demo_app/shared_preferences/preferences.dart';
 import 'package:preferences_demo_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routerName = 'Settings';
@@ -37,6 +40,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 value: Preferences.isDarkMode,
                 onChanged: (value) {
                   Preferences.isDarkMode = value;
+                  final themeProvider =
+                      Provider.of<ThemeProvider>(context, listen: false);
+                  value
+                      ? themeProvider.setDardMode()
+                      : themeProvider.setLightMode();
                   setState(() {});
                 },
               ),
@@ -64,9 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   initialValue: Preferences.name,
                   onChanged: (value) {
                     Preferences.name = value;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   decoration: InputDecoration(
                       labelText: 'Nombre', helperText: 'Nombre del usuario'),
