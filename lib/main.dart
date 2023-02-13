@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_demo_app/screens/screens.dart';
+import 'package:preferences_demo_app/shared_preferences/preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Preferences.init();
+
   runApp(const MyApp());
 }
 
@@ -16,9 +21,10 @@ class MyApp extends StatelessWidget {
       title: 'Preferencias',
       initialRoute: HomeScreen.routerName,
       routes: {
-        HomeScreen.routerName :(context) => HomeScreen(),
-        SettingsScreen.routerName :(context) => SettingsScreen(),
+        HomeScreen.routerName: (context) => HomeScreen(),
+        SettingsScreen.routerName: (context) => SettingsScreen(),
       },
+      theme: ThemeData.light(),
     );
   }
 }
