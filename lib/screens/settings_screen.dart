@@ -13,8 +13,44 @@ class SettingsScreen extends StatelessWidget {
         title: Text('Settings'),
       ),
       drawer: SideMenu(),
-      body: Center(
-        child: Text('Settings Screen'),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Text('Ajustes',style: TextStyle(fontSize: 45,fontWeight: FontWeight.w300),),
+            Divider(),
+
+            SwitchListTile.adaptive(
+              title: Text('Darkmode'),
+              value: true, onChanged: (value) {
+
+            },),
+            Divider(),
+            RadioListTile<int>(value: 1, groupValue: 1,
+            title: Text('Masculino'),
+             onChanged: (value){
+
+            }),
+            RadioListTile<int>(
+                  value: 1,
+                  groupValue: 1,
+                  title: Text('Femenino'),
+                  onChanged: (value) {}),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextFormField(
+                initialValue: 'Gatos',
+                decoration: InputDecoration(
+                  labelText: 'Nombre',
+                  helperText: 'Nombre del usuario'
+                ),
+              ),
+            ),
+
+            
+          ],),
+        ),
       ),
     );
   }
