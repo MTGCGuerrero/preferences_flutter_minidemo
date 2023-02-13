@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferences_demo_app/shared_preferences/preferences.dart';
 import 'package:preferences_demo_app/widgets/widgets.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -10,9 +11,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isDarkmode = false;
-  int gender = 1;
-  String name = 'Pancho';
+  // bool isDarkmode = Preferences.isDarkMode;
+  // int gender = 1;
+  // String name = 'Pancho';
 
   @override
   Widget build(BuildContext context) {
@@ -33,36 +34,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Divider(),
               SwitchListTile.adaptive(
                 title: Text('Darkmode'),
-                value: isDarkmode,
+                value: Preferences.isDarkMode,
                 onChanged: (value) {
-                  isDarkmode = value;
+                  Preferences.isDarkMode = value;
                   setState(() {});
                 },
               ),
               Divider(),
               RadioListTile<int>(
                   value: 1,
-                  groupValue: gender,
+                  groupValue: Preferences.gender,
                   title: Text('Masculino'),
                   onChanged: (value) {
-                    gender = value ?? 1;
+                    Preferences.gender = value ?? 1;
                     setState(() {});
                   }),
               RadioListTile<int>(
                   value: 2,
-                  groupValue: gender,
+                  groupValue: Preferences.gender,
                   title: Text('Femenino'),
                   onChanged: (value) {
-                    gender = value ?? 2;
+                    Preferences.gender = value ?? 2;
                     setState(() {});
                   }),
               Divider(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
-                  initialValue: 'Gatos',
+                  initialValue: Preferences.name,
                   onChanged: (value) {
-                    name = value;
+                    Preferences.name = value;
                     setState(() {
                       
                     });
